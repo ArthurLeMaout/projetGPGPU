@@ -79,7 +79,7 @@ GLuint Mesh::create_VBO() const
   glGenBuffers(1, &vbo);
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
@@ -97,7 +97,7 @@ GLuint Mesh::create_EBO() const
   GLuint ebo;
   glGenBuffers(1, &ebo);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices), indices.data(), GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(int), indices.data(), GL_STATIC_DRAW);
   return ebo;
 }
 GLuint Mesh::load_to_gpu() const
@@ -128,7 +128,7 @@ Mesh Mesh::create_grid(int N)
     {
       vertices.push_back(-1.+2.*j*delta); // x
       vertices.push_back(0.);// y
-      vertices.push_back(-1.+2.*i*delta); // y
+      vertices.push_back(-1.+2.*i*delta); // z
       vertices.push_back(0.); // nx
       vertices.push_back(-1.); // ny
       vertices.push_back(0.); // nz
