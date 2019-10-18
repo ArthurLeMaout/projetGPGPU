@@ -97,6 +97,7 @@ GLuint Mesh::create_EBO() const
   GLuint ebo;
   glGenBuffers(1, &ebo);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+  
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), indices.data(), GL_STATIC_DRAW);
   return ebo;
 }
@@ -128,7 +129,7 @@ Mesh Mesh::create_grid(int N)
     {
       vertices.push_back(-1.+2.*j*delta); // x
       vertices.push_back(0.);// y
-      vertices.push_back(-1.+2.*i*delta); // y
+      vertices.push_back(-1.+2.*i*delta); // z
       vertices.push_back(0.); // nx
       vertices.push_back(-1.); // ny
       vertices.push_back(0.); // nz
